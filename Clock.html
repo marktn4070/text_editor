@@ -1,0 +1,81 @@
+<style> 
+#MyClockDisplay{
+  color:white;
+}
+</style>
+
+<div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    
+<script>
+function showTime(){
+    var date = new Date();
+    var ye = date.getFullYear();
+    var mo = date.getMonth() + 1;
+    var da = date.getDate();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "kl. ";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time =  ye + "-" + mo + "/" + da + " "  + h + ":" + m + ":" + s;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+        setTimeout(showTime, 1000);
+    
+}
+showTime();
+
+    var date = new Date();
+    var ye = date.getFullYear();
+    var mo = date.getMonth() + 1;
+    var da = date.getDate();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "kl. ";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time =  ye + "-" + mo + "/" + da + " "  + h + ":" + m + ":" + s;
+
+
+
+      var $body = document.getElementsByTagName('body')[0];
+      var $MyClockDisplay = document.getElementById('MyClockDisplay');
+      var secretInfo = time;
+
+      var copyToClipboard = function(secretInfo) {
+        var $tempInput = document.createElement('INPUT');
+        $body.appendChild($tempInput);
+        $tempInput.setAttribute('value', secretInfo)
+        $tempInput.select();
+        document.execCommand('copy');
+        $body.removeChild($tempInput);
+      }
+
+      $MyClockDisplay.addEventListener('click', function(ev) {
+        copyToClipboard(secretInfo);
+          document.getElementById("MyClockDisplay").innerHTML = "You copied text!"
+      })
